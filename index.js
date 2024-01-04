@@ -26,6 +26,8 @@ async function esmCollect(router, {
     extension = DEFAULT_EXTENSION,
     content_type = DEFAULT_CONTENT_TYPE,
     warn = true,
+    local_importmap = "importmap",
+    local_imports = false,
     // ______________________________
 } = {}) {
 
@@ -70,15 +72,36 @@ async function esmCollect(router, {
             };
             return false;
         })
-    )).filter(x=>!!x); // Discarded.
+    )).filter(x=>!!x); // Not discarded.
+
+    const imports = {};
 
     for (const m of mods) {
+        imports[m.name] = m.path;
         router.get(m.path, function(req, res, next) {
             res.setHeader('Content-Type', content_type);
             res.send(m.contents);
         });
     };
-    
+    const importmap = JSON.stringify({imports});
+
+    // Importmap middleware:
+    if (local_imports || local_importmap) {
+        router.use(function(req, res, next) {
+            Object.assign(res.locals, {
+                ...(local_imports
+                    ? {[local_imports]: imports}
+                    : {}
+                ),
+                ...(local_importmap
+                    ? {[local_importmap]: importmap}
+                    : {}
+                ),
+            });
+            next();
+        });
+    };
+
 };
 
 function esmrouter(express, options) {
