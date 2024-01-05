@@ -2,29 +2,28 @@
 
 Express router to export ESM npm packages.
 
-## Index
-
+# Index
 
 <!-- vim-markdown-toc GitLab -->
 
-    * [Features](#features)
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [Quick Start](#quick-start)
-    * [Options](#options)
-        * [target](#target)
-        * [path](#path)
-        * [extension](#extension)
-        * [content_type](#content_type)
-        * [warn](#warn)
-        * [local_importmap](#local_importmap)
-        * [local_imports](#local_imports)
-    * [License](#license)
+* [Features](#features)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Quick Start](#quick-start)
+* [Options](#options)
+    * [target](#target)
+    * [path](#path)
+    * [extension](#extension)
+    * [content_type](#content_type)
+    * [warn](#warn)
+    * [local_importmap](#local_importmap)
+    * [local_imports](#local_imports)
+* [License](#license)
 * [Acknowledgements](#acknowledgements)
 
 <!-- vim-markdown-toc -->
 
-## Features
+# Features
 
   * Automatically serve all npm packages that export ESM modules (through the
     *browser* property in its package.json).
@@ -41,13 +40,13 @@ Express router to export ESM npm packages.
     cases.
 
 
-## Installation
+# Installation
 
 ```sh
 npm install esmrouter
 ```
 
-## Usage
+# Usage
 
 Load esmrouter:
 
@@ -74,7 +73,7 @@ app.use(modulesRouter);
 ```
 
 
-## Quick Start
+# Quick Start
 
 Following are more step by step instructions to get it working from scratch
 with simple express project:
@@ -167,9 +166,9 @@ DEBUG=myapp:* npm start
 ```
 
 
-## Options
+# Options
 
-### target
+## target
 
 Control which modules are checked.
 
@@ -178,7 +177,7 @@ Control which modules are checked.
      modules under node_modules, including sub-dependencies).
    - Default value: "prod".
 
-### path
+## path
 
 Specify the base for the route path of all served modules.
 
@@ -186,21 +185,21 @@ Specify the base for the route path of all served modules.
    - Can be empty ("") to mount all at the root of the router.
 
 
-### extension
+## extension
 
 Specify the file extension for the route path of all served modules.
 
    - Default values: "mjs"
 
 
-### content_type
+## content_type
 
 Specify the value of the content-type header.
 
    - Default values: "application/javascript"
 
 
-### warn
+## warn
 
 Specify wether to warn or not when a package with a non string "browser"
 property in its package.json is found.
@@ -208,7 +207,7 @@ property in its package.json is found.
    - Default value: true.
    - Note: Warning message also provide a hint to disable it.
 
-### local_importmap
+## local_importmap
 
 Defines the name of the local property where the importmap string is provided
 (falsy value disables it).
@@ -216,7 +215,7 @@ Defines the name of the local property where the importmap string is provided
    - Default value: "importmap".
 
 
-### local_imports
+## local_imports
 
 Defines the name of the local property where the imports object is provided
 (empty string disables it).
@@ -224,7 +223,7 @@ Defines the name of the local property where the imports object is provided
    - Default value: false (disabled).
 
 
-## License
+# License
 
   [MIT](LICENSE)
 
