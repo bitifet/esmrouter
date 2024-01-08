@@ -78,7 +78,6 @@ app.use(modulesRouter);
 Following are more step by step instructions to get it working from scratch
 with simple express project:
 
-
 1. Create an express project with your preferred template engine (we'll use
 [pug](https://pugjs.org) for our example):
 
@@ -87,6 +86,20 @@ npx express-generator -v pug myApp
 cd myApp
 npm install
 ```
+
+> 💡 **HINT:** Following instructions are there for the sake of explanation. If
+> you are going to create a new Express project, there is a modified version of
+> *express-generator* that can do all the work for you.
+> 
+>   * To install it:
+>     ```sh
+>     npm install -g https://github.com/bitifet/express-generator.git#esmrouter_support
+>     ```
+>   * Then, add the `--esmr` switch and you're done!
+>     ```sh
+>     express --view pug --esmr myApp
+>     ```
+
 
 Now you can check that it works:
 
@@ -218,7 +231,7 @@ Defines the name of the local property where the importmap string is provided
 ## local_imports
 
 Defines the name of the local property where the imports object is provided
-(empty string disables it).
+(falsy value disables it).
 
    - Default value: false (disabled).
 
