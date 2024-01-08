@@ -12,8 +12,8 @@ package name.
 
 **Example:**
 
-In your project: `npm install my_package`
-In your client app: `import my_package from my_package`
+  * In your project: `npm install my_package`
+  * In your client app: `import my_package from my_package`
 
 
 # Index
