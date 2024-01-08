@@ -2,6 +2,20 @@
 
 Express router to export ESM npm packages.
 
+# Brief
+
+ESMrouter creates an Express router that makes all [browser-enabled npm
+packages](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser)
+installed trough `npm install` automatically available client side by its
+package name.
+
+
+**Example:**
+
+In your project: `npm install my_package`
+In your client app: `import my_package from my_package`
+
+
 # Index
 
 <!-- vim-markdown-toc GitLab -->
@@ -25,16 +39,19 @@ Express router to export ESM npm packages.
 
 # Features
 
-  * Automatically serve all npm packages that export ESM modules (through the
-    *browser* property in its package.json).
+  * Automatically serve all [browser-enabled NPM
+    packages](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser)
+    making them available client side.
 
   * Provide an *importmap* local that can be used to provide a fully automated
     [importmap](https://byteofdev.com/posts/how-to-use-esm/#import-maps) in
     your layout view's head so that **you can import npm packages just by its
     package name** client side.
 
-  * Easy to set up. Then just *npm install* browser-enabled packages to get
-    them available client side.
+  * [Easy to set up!](#quick-start).
+
+  * Then just *npm install* modules in your project and **import them by its
+    name client side**.
 
   * Highly customisable. Even though defaults will be just fine in almost all
     cases.
