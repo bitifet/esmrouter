@@ -2,6 +2,11 @@
 
 Express router to export ESM npm packages.
 
+[![NPM Version][npm-image]][npm-url]
+[![npm dependents](https://badgen.net/npm/dependents/esmrouter)](https://www.npmjs.com/package/esmrouter?activeTab=dependents)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
+
+
 # Brief
 
 ESMrouter creates an Express router that makes all [browser-enabled npm
