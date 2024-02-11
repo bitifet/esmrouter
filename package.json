@@ -1,6 +1,6 @@
 {
   "name": "esmrouter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Make npm web modules available through automated express router.",
   "main": "src/index.js",
   "scripts": {
