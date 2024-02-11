@@ -4,6 +4,8 @@ Express router to export ESM npm packages.
 
 [![NPM Version][npm-image]][npm-url]
 [![npm dependents](https://badgen.net/npm/dependents/esmrouter)](https://www.npmjs.com/package/esmrouter?activeTab=dependents)
+[![npms.io](https://img.shields.io/npms-io/quality/smarkform)](https://npms.io/search?q=smarkform)
+[![npms.io](https://img.shields.io/npms-io/maintenance/smarkform)](https://npms.io/search?q=smarkform)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 
@@ -29,16 +31,16 @@ package name.
 * [Installation](#installation)
 * [Usage](#usage)
 * [Quick Start](#quick-start)
-	* [Creating a new Expres project:](#creating-a-new-expres-project)
-	* [Adding ESMrouter to existing express projects](#adding-esmrouter-to-existing-express-projects)
+    * [Creating a new Expres project:](#creating-a-new-expres-project)
+    * [Adding ESMrouter to existing express projects](#adding-esmrouter-to-existing-express-projects)
 * [Options](#options)
-	* [target](#target)
-	* [path](#path)
-	* [extension](#extension)
-	* [content_type](#content_type)
-	* [warn](#warn)
-	* [local_importmap](#local_importmap)
-	* [local_imports](#local_imports)
+    * [target](#target)
+    * [path](#path)
+    * [extension](#extension)
+    * [content_type](#content_type)
+    * [warn](#warn)
+    * [local_importmap](#local_importmap)
+    * [local_imports](#local_imports)
 * [License](#license)
 * [Acknowledgements](#acknowledgements)
 
@@ -266,5 +268,5 @@ Defines the name of the local property where the imports object is provided
 We would like to express our gratitude to the open source community for their valuable contributions and feedback.
 
 
-[npm-image]: https://img.shields.io/npm/v/xprgen.svg
+[npm-image]: https://img.shields.io/npm/v/esmrouter.svg
 [npm-url]: https://npmjs.org/package/esmrouter
