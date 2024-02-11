@@ -4,8 +4,6 @@ Express router to export ESM npm packages.
 
 [![NPM Version][npm-image]][npm-url]
 [![npm dependents](https://badgen.net/npm/dependents/esmrouter)](https://www.npmjs.com/package/esmrouter?activeTab=dependents)
-[![npms.io](https://img.shields.io/npms-io/quality/smarkform)](https://npms.io/search?q=smarkform)
-[![npms.io](https://img.shields.io/npms-io/maintenance/smarkform)](https://npms.io/search?q=smarkform)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 
