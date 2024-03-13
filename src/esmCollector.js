@@ -23,27 +23,14 @@ module.exports = function esmCollector_factory({
         // __________________________________________________
     } = {}) {
 
-        const pkg = await parsePkg(pkg_path);
-        const deps = Object.keys(pkg.dependencies || {});
-        const devdeps = [...deps, ...Object.keys(pkg.devDependencies || {})];
+        const selectedMods = await getTargettedMods(target);
 
-        const selecFilters = {
-            prod: p=>1+deps.indexOf(p),
-            dev: p=>1+devdeps.indexOf(p),
-            all: p=>true,
-        };
-
-        const allMods = await Fs.readdir(modules_path);
-        const selectedMods = allMods.filter(
-            selecFilters[target] || selecFilters[DEFAULT_TARGET]
-        );
         const mods = (await Promise.all(
             selectedMods.map(async function(modName) {
                 const modPkg_path = Path.join(modules_path, modName, "package.json");
                 const {browser} = await parsePkg(modPkg_path);
                 switch (typeof browser) {
                     case "string":
-
                         const filePath = Path.join(modules_path, modName, browser);
                         const routePath = Path.join("/", path, modName + "." + extension);
                         const m = {
@@ -94,6 +81,25 @@ module.exports = function esmCollector_factory({
             });
         };
 
+    };
+
+    async function getTargettedMods(target) {
+        const pkg = await parsePkg(pkg_path);
+        const deps = Object.keys(pkg.dependencies || {});
+        const devdeps = [...deps, ...Object.keys(pkg.devDependencies || {})];
+
+        const selecFilters = {
+            prod: p=>1+deps.indexOf(p),
+            dev: p=>1+devdeps.indexOf(p),
+            all: p=>true,
+        };
+
+        const selectedFilter = selecFilters[target] || selecFilters[DEFAULT_TARGET];
+
+        const allMods = await Fs.readdir(modules_path);
+        return allMods.filter(
+            await getModsFilter()
+        );
     };
 
 };
