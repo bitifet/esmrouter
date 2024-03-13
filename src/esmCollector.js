@@ -1,6 +1,7 @@
-// src/esmCollector.js
+// Src/esmCollector.js
 // ===================
 
+const DEFAULT_TARGET = "prod";
 const {promises: Fs} = require("fs");
 const Path = require("path");
 const {parsePkg} = require("./helpers");
@@ -11,15 +12,15 @@ module.exports = function esmCollector_factory({
 }) {
 
     return async function esmCollect(router, {
-        // Options:__________________________________
-        target          = "prod", // prod / dev / all
+        // Options:__________________________________________
+        target          = DEFAULT_TARGET, // prod / dev / all
         path            = "node_modules",
         extension       = "mjs",
         content_type    = "application/javascript",
         warn            = true,
         local_importmap = "importmap",
         local_imports   = false,
-        // __________________________________________
+        // __________________________________________________
     } = {}) {
 
         const pkg = await parsePkg(pkg_path);
