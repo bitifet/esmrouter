@@ -96,10 +96,16 @@ module.exports = function esmCollector_factory({
 
         const selectedFilter = selecFilters[target] || selecFilters[DEFAULT_TARGET];
 
-        const allMods = await Fs.readdir(modules_path);
-        return allMods.filter(
-            await getModsFilter()
-        );
+        const allModsAndScopes = await Fs.readdir(modules_path);
+        const allMods = (await Promise.all(allModsAndScopes.map(
+            async dirName=>(
+                dirName[0] !== "@" ? dirName
+                : (await Fs.readdir(Path.join(modules_path, dirName)))
+                    .map(moduleName => `${dirName}/${moduleName}`)
+            )
+        ))).flat();
+
+        return allMods.filter(selectedFilter);
     };
 
 };
