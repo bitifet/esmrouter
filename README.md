@@ -222,7 +222,7 @@ defined using *main field* as entry point.
     * A string containing an exact package name to be included.
     * A RegExp that package name must satisfy to be included.
     * An array with many of the former.
-  - Default values: `[]`
+  - Default value: `[]`
   - Examples:
     * `/\bwc-/` Include all scoped and non-scoped packages whose name begins
        with "wc-" (standing for "Web Component"). 
@@ -240,14 +240,14 @@ Specify the base for the route path of all served modules.
 
 Specify the file extension for the route path of all served modules.
 
-   - Default values: "mjs"
+   - Default value: "mjs"
 
 
 ## content_type
 
 Specify the value of the content-type header.
 
-   - Default values: "application/javascript"
+   - Default value: "application/javascript"
 
 
 ## warn
