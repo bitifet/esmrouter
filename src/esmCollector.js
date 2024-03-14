@@ -14,6 +14,7 @@ module.exports = function esmCollector_factory({
     return async function esmCollect(router, {
         // Options:__________________________________________
         target          = DEFAULT_TARGET, // prod / dev / all
+        include         = [],
         path            = "node_modules",
         extension       = "mjs",
         content_type    = "application/javascript",
@@ -24,12 +25,24 @@ module.exports = function esmCollector_factory({
     } = {}) {
 
         const selectedMods = await getTargettedMods(target);
+        if (! (include instanceof Array)) include = [include];
 
         const mods = (await Promise.all(
             selectedMods.map(async function(modName) {
                 const modPkg_path = Path.join(modules_path, modName, "package.json");
-                const {browser} = await parsePkg(modPkg_path);
+                let {browser, main} = await parsePkg(modPkg_path);
                 switch (typeof browser) {
+                    case "undefined":
+                        for (
+                            let includePattern of include
+                        ) if (
+                            includePattern instanceof RegExp ? modName.match(includePattern)
+                            : modName === includePattern // Exact package name
+                        ) {
+                            // Accept main (if defined) as failback for browser
+                            browser = main;
+                        };
+                        if (! browser) break;
                     case "string":
                         const filePath = Path.join(modules_path, modName, browser);
                         const routePath = Path.join("/", path, modName + "." + extension);
@@ -39,8 +52,6 @@ module.exports = function esmCollector_factory({
                         };
                         m.contents = await Fs.readFile(filePath);
                         return m;
-                    case "undefined":
-                        break;
                     default:
                         if (warn) console.warn([
                             "ESMROUTER Warning:",
