@@ -33,6 +33,7 @@ package name.
     * [Adding ESMrouter to existing express projects](#adding-esmrouter-to-existing-express-projects)
 * [Options](#options)
     * [target](#target)
+    * [include](#include)
     * [path](#path)
     * [extension](#extension)
     * [content_type](#content_type)
@@ -198,17 +199,34 @@ Now you can *npm install* your preferred ESM packages from npm and import them
 in all your project views by its package name (as long as they use that layout file) without any extra bundling/compilation step...
 
 
-
 # Options
 
 ## target
 
 Control which modules are checked.
 
-   - Valid options: "prod" (for production dependencies only),
-     "dev" (to also include devDependencies) or "all" (for all
-     modules under node_modules, including sub-dependencies).
+   - Valid options:
+     * `prod`: Scan production dependencies only.
+     * `dev`: Like "prod", but also include devDependencies.
+     * `all` Scan all modules under node_modules, including sub-dependencies.
    - Default value: "prod".
+
+
+## include
+
+Allow to include packages without [browser
+field](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser)
+defined using *main field* as entry point.
+
+  - Valid options:
+    * A string containing an exact package name to be included.
+    * A RegExp that package name must satisfy to be included.
+    * An array with many of the former.
+  - Default values: `[]`
+  - Examples:
+    * `/\bwc-/` Include all scoped and non-scoped packages whose name begins
+       with "wc-" (standing for "Web Component"). 
+
 
 ## path
 
